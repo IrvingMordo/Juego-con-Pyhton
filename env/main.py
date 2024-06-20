@@ -24,15 +24,17 @@ img_folder = os.path.join(os.path.dirname(__file__), 'img')
 player_image_path = os.path.join(img_folder, 'me.jpeg')
 enemy_image_path = os.path.join(img_folder, 'enemy.jpeg')
 
+
 player_image = pygame.image.load(player_image_path)
 enemy_image = pygame.image.load(enemy_image_path)
 
 # Tamaño de las imágenes
-player_image = pygame.transform.scale(player_image, (50, 50))
-enemy_image = pygame.transform.scale(enemy_image, (50, 50))
+player_image = pygame.transform.scale(player_image, (80, 80))
+enemy_image = pygame.transform.scale(enemy_image, (100, 100))
 
 player_size = player_image.get_rect().size
 enemy_size = enemy_image.get_rect().size
+
 
 def detect_collision(player_pos, enemy_pos):
     p_x, p_y = player_pos
@@ -80,9 +82,8 @@ def main_game():
     enemy_pos = [random.randint(0, SCREEN_WIDTH - enemy_size[0]), 0]
     enemy_list = [enemy_pos]
 
-    SPEED = 20
+    SPEED = 40
 
-    # Reloj para controlar la velocidad de actualización
     clock = pygame.time.Clock()
 
     game_over = False
@@ -99,7 +100,7 @@ def main_game():
             player_pos[0] -= SPEED
         if keys[pygame.K_RIGHT] and player_pos[0] < SCREEN_WIDTH - player_size[0]:
             player_pos[0] += SPEED
-
+        
         screen.fill(GRIS)
 
         create_enemies(enemy_list)
